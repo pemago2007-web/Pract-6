@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <button class="btn-original">Original</button>
+    <button class="btn-asc">Menor a mayor</button>
+    <button class="btn-desc">Mayor a menor</button>
+    <ul class="lista"></ul>
+
+    <script>
+
+        const precios = [25, 180, 15, 980, 45];
+        let orden = "original";
+
+        const lista = document.querySelector(".lista");
+
+        function renderizar() {
+            let visibles = precios;
+
+            if (orden === "asc") {
+                visibles = [...precios].sort((a, b) => a - b);
+            } else if (orden === "desc") {
+                visibles = [...precios].sort((a, b) => a - b);
+            }
+
+            lista.innerHTML = "";
+
+            visibles.forEach(precio => {
+                const item = document.createElement("li");
+                item.textContent = `$${precio}`;
+                lista.appendChild(item);
+            });
+        }
+
+
+        document.querySelector(".btn-original").addEventListener("click", () => {
+            orden = "original";
+            renderizar();
+        });
+
+        document.querySelector(".btn-asc").addEventListener("click", () => {
+            orden = "asc";
+            renderizar();
+        });
+
+        document.querySelector(".btn-desc").addEventListener("click", () => {
+            orden = "desc";
+            renderizar();
+        });
+
+        renderizar();
+
+    </script>
+
+</body>
+
+</html>

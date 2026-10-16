@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad</title>
+</head>
+
+<body>
+
+    <button class="btnTeclado">Teclado - $25</button>
+    <button class="btnRaton">Ratón - $15</button>
+    <button class="btnMonitor">Monitor - $180</button>
+    <p>Carrito</p>
+    <ul class="lista"></ul>
+    
+    <p><span class="total">Total: $0</span></p>
+
+    <script>
+        const productos = [
+            { nombre: 'Teclado', precio: 25 },
+            { nombre: 'Ratón', precio: 15 },
+            { nombre: 'Monitor', precio: 180 }
+        ]
+
+        const lista = document.querySelector(".lista");
+        const sumaTotal = document.querySelector(".total");
+        const carrito = [];
+
+        function renderizar() {
+            lista.innerHTML = "";
+
+            let total = 0;
+
+            carrito.forEach(producto => {
+                const item = document.createElement("li");
+                item.textContent = `${producto.nombre}: $${producto.precio}`;
+                lista.appendChild(item);
+                total += producto.precio;
+            });
+
+            sumaTotal.textContent = `Total: $${total}`;
+        }
+
+
+        document.querySelector(".btnTeclado").addEventListener("click", () => {
+            carrito.push(productos[0]);
+            renderizar();
+        });
+
+        document.querySelector(".btnRaton").addEventListener("click", () => {
+            carrito.push(productos[1]);
+            renderizar();
+        });
+
+        document.querySelector(".btnMonitor").addEventListener("click", () => {
+            carrito.push(productos[2]);
+            renderizar();
+        });
+        
+        renderizar();
+    </script>
+
+</body>
+
+</html>
